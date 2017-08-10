@@ -12,5 +12,5 @@ twitter = Twython(consumer_key,
                   access_token_secret
                   )
 
-message = "Hello world!"
+message = "I am a bot. Beep Boop."
 twitter.update_status(status=message)
