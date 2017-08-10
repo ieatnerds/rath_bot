@@ -27,5 +27,5 @@ def grab_temp():
 
     temp_f = parsed_json['current_observation']['temp_f']
 
-    message = ("Current temperature in %s is: %s°F  \nPowered by Weather Underground" % (location, temp_f))
+    message = ("Current temperature in %s is: %s°F  \nPowered by Weather Underground\nI am a bot, Beep Boop. This was posted autonomously." % (location, temp_f))
     return message
