@@ -1,19 +1,31 @@
 """
-This script will use the OpenWeatherMap to get the temperature of
-rochester NY. or at the very least that rochester is the one being given to me.
-Being that there are multiple Rochesters in the United States I'm unsure
-how I can differentiate that at the current time. Not that it's super important
-to me, since Rochester, NY is the city I wanted anyways.
+This script will use the Weather Underground to get the temperature of
+rochester NY.
+
+To be imported into rath_bot.py and used to return a message to be tweeted
+
+...Powered by Weather Underground...
 """
 
-import pyowm
-from auth import owm_key
+import json
+from urllib.request import urlopen
+from auth import api_key
 
-owm = pyowm.OWM(owm_key)
 
-observation = owm.weather_at_place('Rochester, US')
+def grab_temp():
+    """
+    This function will grab the temp of rochester ny in fahrenheit and
+    return a message to be tweeted to the main module rath_bot.py
+    :return:
+    """
+    html = urlopen('http://api.wunderground.com/api/'+api_key+'/geolookup/conditions/q/NY/Rochester.json')
+    json_string = html.read().decode('utf-8')
 
-w = observation.get_weather()
-weather_dict = w.get_temperature('fahrenheit')
-temp = weather_dict['temp']
-print(temp)
+    parsed_json = json.loads(json_string)
+
+    location = parsed_json['location']['city']
+
+    temp_f = parsed_json['current_observation']['temp_f']
+
+    message = ("Current temperature in %s is: %s°F  \nPowered by Weather Underground" % (location, temp_f))
+    return message
