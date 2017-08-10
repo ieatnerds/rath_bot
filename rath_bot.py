@@ -43,7 +43,7 @@ def get_temp(location, degree):
 
 while True:
     temp = get_temp('Rochester, US', 'fahrenheit')
-    message = str('The current temperature is',temp,'degrees fahrenheit.')
+    message = ('The current temperature is',temp,'degrees fahrenheit.')
     twitter.update_status(status=message)
     time.sleep(60 * 15)  # Seconds * Minutes
 
