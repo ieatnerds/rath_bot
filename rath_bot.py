@@ -14,15 +14,13 @@ from auth import (consumer_key,
                   access_token,
                   access_token_secret,
                   )
-# Setup
+
 twitter = Twython(consumer_key,
                   consumer_secret,
                   access_token,
                   access_token_secret
                   )
 
-
-# Main
 
 message = check_weather.grab_temp()
 twitter.update_status(status=message)
