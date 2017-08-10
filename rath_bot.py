@@ -8,7 +8,6 @@ the Twitter API and pulling information from other sources to post on twitter.
 """
 # Imports
 import check_weather
-import time
 from twython import Twython
 from auth import (consumer_key,
                   consumer_secret,
@@ -23,10 +22,9 @@ twitter = Twython(consumer_key,
                   )
 
 
-# Main Loop
-prev_temp = None
-while True:
-    message = check_weather.grab_temp()
-    twitter.update_status(status=message)
-    print('I Tweeted!')
-    time.sleep(60 * 15)  # Seconds * Minutes
+# Main
+
+message = check_weather.grab_temp()
+twitter.update_status(status=message)
+print('I Tweeted!')
+exit()
