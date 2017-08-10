@@ -8,6 +8,7 @@ the Twitter API and pulling information from other sources to post on twitter.
 """
 # Imports
 import pyowm
+import time
 from twython import Twython
 from auth import (consumer_key,
                   consumer_secret,
@@ -43,7 +44,10 @@ def get_temp(location, degree):
 
 while True:
     temp = get_temp('Rochester, US', 'fahrenheit')
-    message = ('The current temperature is',temp,'degrees fahrenheit.')
+    pre = 'The current Temp in Rochester, NY is: '
+    post = '° F'
+    credit = '\nThis information is from OpenWeatherMap.'
+    message = (pre + str(temp) + post + credit)
     twitter.update_status(status=message)
-    time.sleep(60 * 15)  # Seconds * Minutes
+    time.sleep(60 * 5)  # Seconds * Minutes
 
