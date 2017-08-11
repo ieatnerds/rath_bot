@@ -12,6 +12,43 @@ import json
 from urllib.request import urlopen
 from auth import api_key
 
+"""
+This dictionary will hold unicode emojis to be added to the twitter message
+based on what the weather field indicates.
+"""
+w_emoji = {'Clear': '\U00002600', 'Rain': '\U0001f327', 'Snow': '\U0001f328',
+           'Thunder': '\U0001f329', 'Fog': '\U0001f32b', 'Cloud':'\U00002601'}
+
+
+# This is a list of condition to be synonymous with rain.
+def sanity_weather(condition):
+    """
+    This function will take in the current condiition (aka weather, aka clear,
+    cloudy, etc. Then it will put it into more appropriate words for status.
+    It will also use the dictionary of emojis to add an emoji to the end of the
+    condition, because why the hell not. I'm still a youngin'.
+
+    After this we will return a string value to be used in the final message
+    to be posted to twitter.
+    """
+    part_mess = 'It is: '  # This will hold onto our piece of the message
+    if 'Clear' in condition:
+        part_mess += 'Clear ' + str(w_emoji['Clear'])
+    elif 'Thunder' in condition:
+        part_mess += 'Storming' + str(w_emoji['Thunder'])
+    elif 'Rain' in condition or 'Drizzle' in condition:
+        part_mess += 'Raining' + str(w_emoji['Rain'])
+    elif 'Snow' in condition:
+        part_mess += 'Snowing' + str(w_emoji['Snow'])
+    elif 'Fog' in condition:
+        part_mess += 'Foggy' + str(w_emoji['Fog'])
+    elif 'Cloud' in condition or 'Overcast' in condition:
+        part_mess += 'Cloudy' + str(w_emoji['Cloud'])
+    else:
+        part_mess += str(condition) + 'y'
+
+    return part_mess
+
 
 def grab_temp():
     """
@@ -24,5 +61,7 @@ def grab_temp():
     parsed_json = json.loads(json_string)
     location = parsed_json['location']['city']
     temp_f = parsed_json['current_observation']['temp_f']
-    message = ("Current temperature in %s is: %s°F  \nPowered by Weather Underground\nI am a bot, Beep Boop." % (location, temp_f))
+    weather = parsed_json['current_observation']['weather']
+    weather = sanity_weather(weather)
+    message = ("Current temperature in %s is: %s°F\n%s\nPowered by Weather Underground\nI am a bot, Beep Boop." % (location, temp_f, weather))
     return message
