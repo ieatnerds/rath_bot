@@ -36,17 +36,17 @@ def sanity_weather(condition):
     if 'Clear' in condition:
         part_mess += 'Clear ' + str(w_emoji['Clear'])
     elif 'Thunder' in condition:
-        part_mess += 'Storming' + str(w_emoji['Thunder'])
+        part_mess += 'Storming ' + str(w_emoji['Thunder'])
     elif 'Rain' in condition or 'Drizzle' in condition:
-        part_mess += 'Raining' + str(w_emoji['Rain'])
+        part_mess += 'Raining ' + str(w_emoji['Rain'])
     elif 'Snow' in condition:
-        part_mess += 'Snowing' + str(w_emoji['Snow'])
+        part_mess += 'Snowing ' + str(w_emoji['Snow'])
     elif 'Fog' in condition:
-        part_mess += 'Foggy' + str(w_emoji['Fog'])
+        part_mess += 'Foggy ' + str(w_emoji['Fog'])
     elif 'Partly' in condition:
-        part_mess += 'Partly Cloudy' + str(w_emoji['Partly'])
+        part_mess += 'Partly Cloudy ' + str(w_emoji['Partly'])
     elif 'Cloud' in condition or 'Overcast' in condition:
-        part_mess += 'Cloudy' + str(w_emoji['Cloud'])
+        part_mess += 'Cloudy ' + str(w_emoji['Cloud'])
     else:
         part_mess += str(condition) + 'y'
 
@@ -63,7 +63,7 @@ def hot_cold(temp_f):
     part_mess = str(temp_f) + '°F '
     if temp_f >= 80.0:
         part_mess += '\U0001f525'
-    elif temp_f <= 50.0:
+    elif temp_f <= 65.0:
         part_mess += '\U00002744'
 
     return part_mess
