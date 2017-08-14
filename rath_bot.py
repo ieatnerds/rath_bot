@@ -10,7 +10,7 @@ the Twitter API and pulling information from other sources to post on twitter.
 import check_weather
 import logging
 import sys
-import os
+from make_dir import make_dir
 from twython import Twython
 from auth import (consumer_key,
                   consumer_secret,
@@ -23,13 +23,15 @@ twitter = Twython(consumer_key,
                   access_token,
                   access_token_secret
                   )
-print(len(sys.argv))
-if len(sys.argv) == 1:
-    file = 'logs/record.log'  # Default for testing
-else:
-    file = str(sys.argv[1])  # To actually be used on the rpi
 
-logging.basicConfig(filename=file, level=logging.INFO,
+if len(sys.argv) == 1:
+    path = 'logs/'  # Default for testing
+else:
+    path = str(sys.argv[1])  # To actually be used on the rpi
+
+make_dir(path)
+
+logging.basicConfig(filename=(path+'record.log'), level=logging.INFO,
                     format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')
 
