@@ -23,9 +23,9 @@ twitter = Twython(consumer_key,
                   access_token_secret
                   )
 
-os.chdir(os.path.dirname(sys.argv[0]))
+logdir = sys.argv[1]
 
-logging.basicConfig(filename='logs/record.log', level=logging.INFO,
+logging.basicConfig(filename=(str(logdir)+'record.log'), level=logging.INFO,
                     format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')
 
