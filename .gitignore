@@ -1,4 +1,4 @@
 auth.py
 __pycache__/
 .idea/
-logs/
+logs/record.log
