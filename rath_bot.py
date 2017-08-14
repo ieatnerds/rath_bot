@@ -22,11 +22,15 @@ twitter = Twython(consumer_key,
                   access_token_secret
                   )
 
-logging.basicConfig(filename='logs/record.log', level=logging.DEBUG,
+logging.basicConfig(filename='logs/record.log', level=logging.INFO,
                     format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')
 
 message = check_weather.grab_temp()
-twitter.update_status(status=message)
-logging.info('I Tweeted!\n')
+
+try:
+    twitter.update_status(status=message)
+    logging.info('I Tweeted!\n')
+except Exception as err:
+    logging.info(err)  # Actually helpful
 exit()
