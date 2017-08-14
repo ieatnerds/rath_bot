@@ -24,7 +24,12 @@ twitter = Twython(consumer_key,
                   access_token_secret
                   )
 
-logging.basicConfig(filename=('logs/record.log'), level=logging.INFO,
+if len(sys.arv) > 1:
+    file = 'logs/record.log'  # Default for testing
+else:
+    file = str(sys.argv[1])  # To actually be used on the rpi
+
+logging.basicConfig(filename=file, level=logging.INFO,
                     format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')
 
