@@ -9,6 +9,7 @@ the Twitter API and pulling information from other sources to post on twitter.
 # Imports
 import check_weather
 import logging
+import os
 from twython import Twython
 from auth import (consumer_key,
                   consumer_secret,
@@ -22,6 +23,8 @@ twitter = Twython(consumer_key,
                   access_token_secret
                   )
 
+os.chdir(os.path.dirname(sys.argv[0]))
+
 logging.basicConfig(filename='logs/record.log', level=logging.INFO,
                     format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')
@@ -32,5 +35,5 @@ try:
     twitter.update_status(status=message)
     logging.info('I Tweeted!\n')
 except Exception as err:
-    logging.info(err)  # Actually helpful
+    logging.info(err+'\n')  # Actually helpful
 exit()
