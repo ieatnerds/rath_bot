@@ -10,6 +10,7 @@ the Twitter API and pulling information from other sources to post on twitter.
 import check_weather
 import logging
 import sys
+import os
 from twython import Twython
 from auth import (consumer_key,
                   consumer_secret,
@@ -23,7 +24,10 @@ twitter = Twython(consumer_key,
                   access_token_secret
                   )
 
-logdir = sys.argv[1]
+if len(sys.argv) == 1:
+    logdir = sys.argv[1]
+else:
+    logdir = os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 logging.basicConfig(filename=(str(logdir)+'record.log'), level=logging.INFO,
                     format='%(asctime)s %(message)s',
