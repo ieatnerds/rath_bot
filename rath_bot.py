@@ -23,8 +23,8 @@ twitter = Twython(consumer_key,
                   access_token,
                   access_token_secret
                   )
-
-if len(sys.argv) > 1:
+print(len(sys.argv))
+if len(sys.argv) == 1:
     file = 'logs/record.log'  # Default for testing
 else:
     file = str(sys.argv[1])  # To actually be used on the rpi
