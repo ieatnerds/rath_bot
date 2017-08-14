@@ -23,14 +23,8 @@ twitter = Twython(consumer_key,
                   access_token,
                   access_token_secret
                   )
-print(len(sys.argv))
-if len(sys.argv) == 1:
-    logdir = os.path.dirname(os.path.abspath(__file__))
 
-else:
-    logdir = sys.argv[1]
-
-logging.basicConfig(filename=(str(logdir)+'record.log'), level=logging.INFO,
+logging.basicConfig(filename=('logs/record.log'), level=logging.INFO,
                     format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')
 
