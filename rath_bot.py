@@ -25,7 +25,7 @@ twitter = Twython(consumer_key,
                   )
 print(len(sys.argv))
 if len(sys.argv) == 1:
-    logdir = os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    logdir = os.path.dirname(os.path.abspath(__file__))
 
 else:
     logdir = sys.argv[1]
