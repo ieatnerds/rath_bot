@@ -40,5 +40,5 @@ try:
     twitter.update_status(status=message)
     logging.info('I Tweeted!\n')
 except Exception as err:
-    logging.info(err+'\n')  # Actually helpful
+    logging.info(str(err)+'\n')  # Actually helpful
 exit()
