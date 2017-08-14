@@ -9,7 +9,7 @@ the Twitter API and pulling information from other sources to post on twitter.
 # Imports
 import check_weather
 import logging
-import os
+import sys
 from twython import Twython
 from auth import (consumer_key,
                   consumer_secret,
