@@ -22,7 +22,7 @@ w_emoji = {'Clear': '\U00002600', 'Rain': '\U0001f327', 'Snow': '\U0001f328',
 
 
 # This is a list of condition to be synonymous with rain.
-def sanity_weather(condition):
+def sanityWeather(condition):
     """
     This function will take in the current condiition (aka weather, aka clear,
     cloudy, etc. Then it will put it into more appropriate words for status.
@@ -53,23 +53,25 @@ def sanity_weather(condition):
     return part_mess
 
 
-def hot_cold(temp_f):
+def hotCold(temp_f):
     """
     This function will simply add a fire or snow emoji based on the current
     temperature
     :param temp_f:
     :return:
     """
+    HOT_TEMP = 80.0
+    COLD_TEMP = 65.0
     part_mess = str(temp_f) + '°F '
-    if temp_f >= 80.0:
+    if temp_f >= HOT_TEMP:
         part_mess += '\U0001f525'
-    elif temp_f <= 65.0:
+    elif temp_f <= COLD_TEMP:
         part_mess += '\U00002744'
 
     return part_mess
 
 
-def grab_temp():
+def grabTemp():
     """
     This function will grab the temp of rochester ny in fahrenheit and
     return a message to be tweeted to the main module rath_bot.py
@@ -81,7 +83,7 @@ def grab_temp():
     location = parsed_json['location']['city']
     temp_f = parsed_json['current_observation']['temp_f']  # Literal Temp
     weather = parsed_json['current_observation']['weather']
-    condition = sanity_weather(weather)  # Condition to be used in message.
-    temp = hot_cold(temp_f)  # Temp to be used in message.
-    message = ("Current temperature in %s is: %s\n%s\nPowered by Weather Underground\nI am a bot, Beep Boop." % (location, temp, condition))
+    condition = sanityWeather(weather)  # Condition to be used in message.
+    temp = hotCold(temp_f)  # Temp to be used in message.
+    message = ('Current temperature in %s is: %s\n%s\nPowered by Weather Underground\nI am a bot, Beep Boop.' % (location, temp, condition))
     return message

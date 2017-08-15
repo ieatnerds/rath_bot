@@ -6,7 +6,7 @@ then it will create the directory.
 import os
 
 
-def make_dir(filepath):
+def makeDir(filepath):
     """This function searches for the directory."""
     directory = os.path.dirname(filepath)
     if not os.path.exists(directory):
