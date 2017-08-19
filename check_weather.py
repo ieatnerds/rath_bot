@@ -17,7 +17,7 @@ This dictionary will hold unicode emojis to be added to the twitter message
 based on what the weather field indicates.
 """
 w_emoji = {'Clear': '\U00002600', 'Rain': '\U0001f327', 'Snow': '\U0001f328',
-           'Thunder': '\U0001f329', 'Fog': '\U0001f32b', 'Cloud':'\U00002601',
+           'Thunder': '\U0001f329', 'Fog': '\U0001f32b', 'Cloud': '\U00002601',
            'Partly': '\U000026c5'}
 
 
@@ -86,5 +86,5 @@ def grabTemp():
     humidity = parsed_json['current_observation']['relative_humidity']
     condition = sanityWeather(weather)  # Condition to be used in message.
     temp = hotCold(temp_f)  # Temp to be used in message.
-    message = ('Current temperature in %s is: %s\nHumidity: %s\n%s\nPowered by Weather Underground\nI\'m a bot, Beep Boop.' % (location, temp, humidity, condition))
+    message = f'Current temperature in {location} is: {temp}\nHumidity: {humidity}\n{condition}\nPowered by Weather Underground\nI\'m a bot, Beep Boop.'
     return message
