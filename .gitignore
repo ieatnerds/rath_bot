@@ -2,3 +2,4 @@ auth.py
 __pycache__/
 .idea/
 logs/record.log
+Rochester.json
