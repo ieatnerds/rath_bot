@@ -83,7 +83,8 @@ def grabTemp():
     location = parsed_json['location']['city']
     temp_f = parsed_json['current_observation']['temp_f']  # Literal Temp
     weather = parsed_json['current_observation']['weather']
+    humidity = parsed_json['current_observation']['relative_humidity']
     condition = sanityWeather(weather)  # Condition to be used in message.
     temp = hotCold(temp_f)  # Temp to be used in message.
-    message = ('Current temperature in %s is: %s\n%s\nPowered by Weather Underground\nI am a bot, Beep Boop.' % (location, temp, condition))
+    message = ('Current temperature in %s is: %s\nHumidity: %s\n%s\nPowered by Weather Underground\nI\'m a bot, Beep Boop.' % (location, temp, humidity, condition))
     return message
