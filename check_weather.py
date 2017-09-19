@@ -32,7 +32,7 @@ def sanityWeather(condition):
     After this we will return a string value to be used in the final message
     to be posted to twitter.
     """
-    part_mess = 'It is: '  # This will hold onto our piece of the message
+    part_mess = 'It be: '  # This will hold onto our piece of the message
     if 'Clear' in condition:
         part_mess += 'Clear ' + str(w_emoji['Clear'])
     elif 'Thunder' in condition:
