@@ -32,7 +32,7 @@ def sanityWeather(condition):
     After this we will return a string value to be used in the final message
     to be posted to twitter.
     """
-    part_mess = 'It be: '  # This will hold onto our piece of the message
+    part_mess = 'It is: '  # This will hold onto our piece of the message
     if 'Clear' in condition:
         part_mess += 'Clear ' + str(w_emoji['Clear'])
     elif 'Thunder' in condition:
@@ -62,7 +62,7 @@ def hotCold(temp_f):
     """
     HOT_TEMP = 80.0
     COLD_TEMP = 65.0
-    part_mess = str(temp_f) + '°F'
+    part_mess = str(temp_f) + '°F '
     if temp_f >= HOT_TEMP:
         part_mess += '\U0001f525'
     elif temp_f <= COLD_TEMP:
@@ -86,5 +86,5 @@ def grabTemp():
     humidity = parsed_json['current_observation']['relative_humidity']
     condition = sanityWeather(weather)  # Condition to be used in message.
     temp = hotCold(temp_f)  # Temp to be used in message.
-    message = f'Arr! The current temp in {location} be: {temp}\nHumidity be: {humidity}\n{condition}\nPowered by Weather Underground\nI\'m a bot, Argh!🏴‍☠️.'
+    message = f'Current temperature in {location}: {temp}\nHumidity: {humidity}\n{condition}\nPowered by Weather Underground\nI\'m a bot, Beep Boop️.'
     return message
